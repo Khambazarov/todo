@@ -4,13 +4,14 @@ import List from "./List";
 // const LOCAL_STORAGE_KEY = "todoApp";
 
 const Form = () => {
-  const [task, setTask] = useState({ title: "", complete: false });
+  const [task, setTask] = useState("");
+  const [bool, setBool] = useState(false);
   const [todoList, setTodoList] = useState([]);
 
   const handleAddTask = (e) => {
     e.preventDefault();
-    //setTodoList(() => [...todoList, task]);
-    setTask(() => {return { title: "", complete: false }});
+    setTodoList([...todoList, { title: task, complete: false }]);
+    setTask("");
     console.log(task);
   };
 
@@ -25,7 +26,7 @@ const Form = () => {
   //   // console.log(storedTask);
   // }, []);
 
-  const handleComplitedTasks = (e) => {
+  const handleCompletedTasks = (e) => {
     e.preventDefault();
     const newTask = todoList.filter((todo) => !todo.complete);
     setTodoList(newTask);
@@ -37,16 +38,22 @@ const Form = () => {
       <form className="Form">
         <input
           autoFocus
-          value={task.title}
-          onChange={(e) => setTask(() => (task.title = e.target.value))}
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
           type="text"
           name="form"
           placeholder="Enter a Task"
         />
+        {/* <input
+          type="checkbox"
+          value={bool}
+          checked={bool}
+          onChange={() => setBool(!bool)}
+        /> */}
         <button onClick={handleAddTask}>Add</button>
-        <button onClick={handleComplitedTasks}>Clear</button>
+        <button onClick={handleCompletedTasks}>Clear</button>
       </form>
-      <List todoList={todoList} />
+      <List todoList={todoList} setTodoList={setTodoList} />
     </>
   );
 };

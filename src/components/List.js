@@ -5,10 +5,13 @@ const List = ({ todoList }) => {
     <li key={i}>
       <input
         type="checkbox"
-        onChange={(e) => (todo.complete = e.target.value)}
-        // {todo.complete ? cheched : ""}
+        checked={() => (todo.complete ? todo.complete : "")}
+        onChange={() => {
+          todo.complete = !todo.complete;
+          console.log(todo);
+        }}
       />
-      {todo}
+      {todo.title}
     </li>
   ));
   return <ul>{listItem}</ul>;
