@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 
 const List = ({ todoList }) => {
   const listItem = todoList.map((todo, i) => (
     <li key={i}>
       <input
         type="checkbox"
-        onChange={(e) => (todo.complete = e.target.value)}
-        // {todo.complete ? cheched : ""}
+        onChange={() => {
+          todo.complete = !todo.complete;
+        }}
       />
-      {todo}
+      {todo.task}
     </li>
   ));
   return <ul>{listItem}</ul>;
