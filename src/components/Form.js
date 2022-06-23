@@ -6,10 +6,6 @@ const ToDosContainer = () => {
   const { toDos, addItem } = useContext(MyContext);
   const [value, setValue] = useState("");
 
-  const handleNewTodoChange = (event) => {
-    setValue(event.target.value);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     addItem(value);
@@ -28,7 +24,7 @@ const ToDosContainer = () => {
             type="text"
             name="todo"
             value={value}
-            onChange={handleNewTodoChange}
+            onChange={(e) => setValue(e.target.value)}
           />
         </label>
         <input type="submit" value="ADD" />
