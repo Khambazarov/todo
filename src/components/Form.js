@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import ToDoItem from "./ToDoItem";
 import MyContext from "./Context/MyContext";
 
-function ToDosContainer() {
+const ToDosContainer = () => {
   const { toDos, addItem } = useContext(MyContext);
   const [value, setValue] = useState("");
 
@@ -39,6 +39,6 @@ function ToDosContainer() {
       </div>
     </div>
   );
-}
+};
 
 export default ToDosContainer;

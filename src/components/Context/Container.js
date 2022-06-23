@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MyContext from "./MyContext";
 
-export default function Container(props) {
+export default Container = (props) => {
   const tasks = [
     { id: 0, text: "Wash my face!", done: false },
     { id: 1, text: "Walk the dog", done: false },
@@ -48,4 +48,4 @@ export default function Container(props) {
       {props.children}
     </MyContext.Provider>
   );
-}
+};

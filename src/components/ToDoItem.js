@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import MyContext from "./Context/MyContext";
 
-function ToDoItem({ item }) {
+const ToDoItem = ({ item }) => {
   const { updateItem } = useContext(MyContext);
   return (
     <div>
@@ -11,6 +11,6 @@ function ToDoItem({ item }) {
       </div>
     </div>
   );
-}
+};
 
 export default ToDoItem;
