@@ -21,9 +21,9 @@ function ToDosContainer() {
   });
 
   return (
-    <div className="todos-container">
-      <form className="todo-form" onSubmit={handleSubmit}>
-        <label className="input-item">
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
           <input
             type="text"
             name="todo"
@@ -31,9 +31,9 @@ function ToDosContainer() {
             onChange={handleNewTodoChange}
           />
         </label>
-        <input className="btn" type="submit" value="ADD" />
+        <input type="submit" value="ADD" />
       </form>
-      <div className="todos">
+      <div>
         <h3>TO DO</h3>
         {toDos.length > 0 && toDoItems}
       </div>
