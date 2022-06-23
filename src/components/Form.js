@@ -1,61 +1,44 @@
-import React, { useState, useEffect } from "react";
-import List from "./List";
+import React, { useState, useContext } from "react";
+import ToDoItem from "./ToDoItem";
+import MyContext from "./Context/MyContext";
 
-// const LOCAL_STORAGE_KEY = "todoApp";
+function ToDosContainer() {
+  const { toDos, addItem } = useContext(MyContext);
+  const [value, setValue] = useState("");
 
-const Form = () => {
-  const [task, setTask] = useState("");
-  const [bool, setBool] = useState(false);
-  const [todoList, setTodoList] = useState([]);
-
-  const handleAddTask = (e) => {
-    e.preventDefault();
-    setTodoList([...todoList, { title: task, complete: false }]);
-    setTask("");
-    console.log(task);
+  const handleNewTodoChange = (event) => {
+    setValue(event.target.value);
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoList));
-  //   console.log(todoList);
-  // }, [todoList]);
-
-  // useEffect(() => {
-  //   const storedTask = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-  //   setTask(storedTask);
-  //   // console.log(storedTask);
-  // }, []);
-
-  const handleCompletedTasks = (e) => {
-    e.preventDefault();
-    const newTask = todoList.filter((todo) => !todo.complete);
-    setTodoList(newTask);
-    console.log(newTask);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addItem(value);
+    setValue("");
   };
+
+  const toDoItems = toDos.map((el) => {
+    return <ToDoItem item={el} key={el.id}></ToDoItem>;
+  });
 
   return (
-    <>
-      <form className="Form">
-        <input
-          autoFocus
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          type="text"
-          name="form"
-          placeholder="Enter a Task"
-        />
-        {/* <input
-          type="checkbox"
-          value={bool}
-          checked={bool}
-          onChange={() => setBool(!bool)}
-        /> */}
-        <button onClick={handleAddTask}>Add</button>
-        <button onClick={handleCompletedTasks}>Clear</button>
+    <div className="todos-container">
+      <form className="todo-form" onSubmit={handleSubmit}>
+        <label className="input-item">
+          <input
+            type="text"
+            name="todo"
+            value={value}
+            onChange={handleNewTodoChange}
+          />
+        </label>
+        <input className="btn" type="submit" value="ADD" />
       </form>
-      <List todoList={todoList} setTodoList={setTodoList} />
-    </>
+      <div className="todos">
+        <h3>TO DO</h3>
+        {toDos.length > 0 && toDoItems}
+      </div>
+    </div>
   );
-};
+}
 
-export default Form;
+export default ToDosContainer;

@@ -1,13 +1,13 @@
-import "./App.scss";
+import React, { useState, useEffect } from "react";
+
 import Form from "./components/Form";
 
+import Container from "./components/Context/Container";
 const App = () => {
-  
   return (
-    <div className="App">
-      <h1>TODO LIST</h1>
+    <Container>
       <Form />
-    </div>
+    </Container>
   );
 };
 
