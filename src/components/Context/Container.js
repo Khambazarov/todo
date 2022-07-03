@@ -42,16 +42,16 @@ const Container = (props) => {
     localStorage.setItem("todos", JSON.stringify(restoreItems));
   };
 
-  const deleteItem = () => {
-    const deleteItems = items.map((item) => {
-      if (item.done) {
-      }
-      return item;
-    });
+  // const deleteItem = () => {
+  //   const deleteItems = items.map((item) => {
+  //     if (item.done) {
+  //     }
+  //     return item;
+  //   });
 
-    setItems(deleteItems);
-    localStorage.setItem("todos", JSON.stringify(deleteItems));
-  };
+  //   setItems(deleteItems);
+  //   localStorage.setItem("todos", JSON.stringify(deleteItems));
+  // };
 
   const addItem = (value) => {
     const newItem = { id: uuidv4(), text: value, done: false };
@@ -118,7 +118,7 @@ const Container = (props) => {
         toDos,
         toDones,
         restoreItem,
-        deleteItem,
+        // deleteItem,
         showLengthToDoItems,
         showLengthtoDoneItems,
         handleSubmit,

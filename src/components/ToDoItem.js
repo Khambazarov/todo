@@ -7,7 +7,7 @@ const ToDoItem = ({ item }) => {
   console.log("item", item);
   // console.log("item text", item.text);
   // console.log("item done", item.done);
-  const { updateItem, deleteItem } = useContext(MyContext);
+  const { updateItem } = useContext(MyContext);
   return (
     <div className="ToDoItem">
       <p>{item.text}</p>
