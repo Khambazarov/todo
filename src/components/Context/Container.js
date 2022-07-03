@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import MyContext from "./MyContext";
 
 const Container = (props) => {
@@ -53,7 +54,7 @@ const Container = (props) => {
   };
 
   const addItem = (value) => {
-    const newItem = { id: items.length, text: value, done: false };
+    const newItem = { id: uuidv4(), text: value, done: false };
     const updatedtasks = [...items, newItem];
 
     setItems(updatedtasks);
