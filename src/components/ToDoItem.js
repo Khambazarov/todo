@@ -12,16 +12,30 @@ const ToDoItem = ({ item }) => {
     <div className="ToDoItem">
       <p>{item.text}</p>
       <Stack direction="row" spacing={1}>
-        <Button
-          className="btn_done"
-          variant="contained"
-          color="secondary"
-          size="small"
-          startIcon={<DoneAll />}
-          onClick={() => updateItem(item.id)}
-        >
-          {item.done ? "Undo" : "Done"}
-        </Button>
+        {item.done ? (
+          <Button
+            className="btn_done"
+            variant="contained"
+            color="secondary"
+            size="small"
+            // startIcon={<DoneAll />}
+            onClick={() => updateItem(item.id)}
+          >
+            {item.done ? "Undo" : "Done"}
+          </Button>
+        ) : (
+          <Button
+            className="btn_done"
+            variant="contained"
+            color="secondary"
+            size="small"
+            startIcon={<DoneAll />}
+            onClick={() => updateItem(item.id)}
+            style={{ padding: "0.5rem 2rem" }}
+          >
+            {item.done ? "Undo" : "Done"}
+          </Button>
+        )}
         {item.done && (
           <Button
             variant="contained"
@@ -29,6 +43,7 @@ const ToDoItem = ({ item }) => {
             size="small"
             startIcon={<Delete />}
             onClick={() => updateItem(item.id)}
+            style={{ padding: "0 2rem" }}
           >
             Delete
           </Button>
