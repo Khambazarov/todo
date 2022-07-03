@@ -1,7 +1,16 @@
 .Form {
-  text-align: center;
+  // text-align: center;
+  border: 1rem solid #0ff;
 
-  input {
-    text-align: center;
+  h2 {
+    // margin: 1rem;
+  }
+
+  .TextField {
+    // font-size: 2rem;
+  }
+
+  Button {
+    margin: 1rem 0 0 1rem;
   }
 }

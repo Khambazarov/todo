@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import MyContext from "./MyContext";
 
-export default Container = (props) => {
-  const tasks = [
-    { id: 0, text: "Wash my face!", done: false },
-    { id: 1, text: "Walk the dog", done: false },
-    { id: 2, text: "Pay the rent", done: false },
-    { id: 3, text: "Make so moneys", done: false },
-    { id: 4, text: "Make a website", done: true },
-  ];
+const Container = (props) => {
+  const tasks = [];
 
   const [items, setItems] = useState(tasks);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     const tasks = JSON.parse(localStorage.getItem("todos"));
@@ -33,19 +28,107 @@ export default Container = (props) => {
     localStorage.setItem("todos", JSON.stringify(updatedItems));
   };
 
+  const restoreItem = () => {
+    // We need to toggle the status of the item with `done`.
+    const restoreItems = items.map((item) => {
+      if (item.done) {
+        item.done = !item.done;
+        return item;
+      } else return item;
+    });
+
+    setItems(restoreItems);
+    localStorage.setItem("todos", JSON.stringify(restoreItems));
+  };
+
+  const deleteItem = () => {
+    const deleteItems = items.map((item) => {
+      if (item.done) {
+      }
+      return item;
+    });
+
+    setItems(deleteItems);
+    localStorage.setItem("todos", JSON.stringify(deleteItems));
+  };
+
   const addItem = (value) => {
     const newItem = { id: items.length, text: value, done: false };
-    const updatedtasks = [newItem, ...items];
+    const updatedtasks = [...items, newItem];
+
     setItems(updatedtasks);
     localStorage.setItem("todos", JSON.stringify(updatedtasks));
   };
 
-  const toDos = items.filter((el) => !el.done);
-  const toDones = items.filter((el) => el.done);
+  const toDos = items.filter((item) => !item.done);
+  const toDones = items.filter((item) => item.done);
+
+  const showLengthToDoItems = () => {
+    const tasks =
+      toDos.length === 1 ? `${toDos.length} task` : `${toDos.length} tasks`;
+    return tasks;
+  };
+
+  const showLengthtoDoneItems = () => {
+    const showDeletedTasks =
+      toDones.length === 1
+        ? `${toDones.length} task`
+        : `${toDones.length} tasks`;
+    return showDeletedTasks;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // value.trim() => prevent "spaced" Tasks
+    if (value.trim()) addItem(value);
+    setValue("");
+  };
+
+  const STYLES = {
+    todo: {
+      // margin: "1rem",
+      // border: "1rem double #f00",
+      // borderRadius: "2rem",
+    },
+    done: {
+      border: "1px solid #0f0",
+      backgroundColor: "#0f0",
+    },
+    todoText: {
+      textAlign: "center",
+      margin: "0",
+      padding: "0 1rem 1rem 1rem",
+      backgroundColor: "#0ff",
+    },
+    doneText: {
+      textAlign: "center",
+      margin: "1rem 0 0 0",
+      padding: "1rem 0 0 0",
+      borderTop: "1rem solid #0ff",
+      backgroundColor: "#0f0",
+    },
+  };
 
   return (
-    <MyContext.Provider value={{ addItem, updateItem, toDos, toDones }}>
+    <MyContext.Provider
+      value={{
+        // addItem,
+        updateItem,
+        toDos,
+        toDones,
+        restoreItem,
+        deleteItem,
+        showLengthToDoItems,
+        showLengthtoDoneItems,
+        handleSubmit,
+        value,
+        setValue,
+        STYLES,
+      }}
+    >
       {props.children}
     </MyContext.Provider>
   );
 };
+
+export default Container;

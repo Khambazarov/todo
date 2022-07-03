@@ -1,0 +1,20 @@
+.ToDoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  border: 2px solid blue;
+  border-radius: 0.5rem;
+
+  p {
+    margin-left: 1rem;
+  }
+
+  Button {
+    width: 100%;
+  }
+
+  .btn_done {
+    margin: 0 0 0 1rem;
+  }
+}
