@@ -45,6 +45,7 @@ const ToDosContainer = () => {
           fullWidth
           autoFocus
         />
+        {/* CREATE FN TO AUTOFOCUS THE TEXTFIELD */}
         <Button
           onClick={handleSubmit}
           variant="contained"
