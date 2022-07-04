@@ -42,16 +42,15 @@ const Container = (props) => {
     localStorage.setItem("todos", JSON.stringify(restoreItems));
   };
 
-  // const deleteItem = () => {
-  //   const deleteItems = items.map((item) => {
-  //     if (item.done) {
-  //     }
-  //     return item;
-  //   });
-
-  //   setItems(deleteItems);
-  //   localStorage.setItem("todos", JSON.stringify(deleteItems));
-  // };
+  const removeItem = (id) => {
+    const remove = items.filter((item) => item.id !== id);
+    console.log(remove);
+    if (remove) {
+      localStorage.removeItem("todos");
+    }
+    setItems(remove);
+    localStorage.setItem("todos", JSON.stringify(remove));
+  };
 
   const addItem = (value) => {
     const newItem = { id: uuidv4(), text: value, done: false };
@@ -92,21 +91,20 @@ const Container = (props) => {
       // borderRadius: "2rem",
     },
     done: {
-      border: "1px solid #0f0",
-      backgroundColor: "#0f0",
+      border: "1px solid #0ff",
+      backgroundColor: "#0ff",
     },
     todoText: {
       textAlign: "center",
       margin: "0",
-      padding: "0 1rem 1rem 1rem",
+      padding: "0 0 1rem 0",
       backgroundColor: "#0ff",
     },
     doneText: {
       textAlign: "center",
-      margin: "1rem 0 0 0",
-      padding: "1rem 0 0 0",
+      padding: "0 0 1rem 0",
       borderTop: "1rem solid #0ff",
-      backgroundColor: "#0f0",
+      backgroundColor: "#0ff",
     },
   };
 
@@ -118,7 +116,7 @@ const Container = (props) => {
         toDos,
         toDones,
         restoreItem,
-        // deleteItem,
+        removeItem,
         showLengthToDoItems,
         showLengthtoDoneItems,
         handleSubmit,
