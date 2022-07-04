@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import MyContext from "./Context/MyContext";
 import { Button, Stack } from "@mui/material";
-import { Delete, DoneAll } from "@mui/icons-material";
+import { Delete, DoneAll, RestoreFromTrash } from "@mui/icons-material";
 
 const ToDoItem = ({ item }) => {
-  console.log("item", item);
+  // console.log("items", item.done);
   // console.log("item text", item.text);
   // console.log("item done", item.done);
-  const { updateItem } = useContext(MyContext);
+  const { updateItem, removeItem } = useContext(MyContext);
   return (
     <div className="ToDoItem">
       <p>{item.text}</p>
@@ -18,7 +18,7 @@ const ToDoItem = ({ item }) => {
             variant="contained"
             color="secondary"
             size="small"
-            // startIcon={<DoneAll />}
+            startIcon={<RestoreFromTrash />}
             onClick={() => updateItem(item.id)}
           >
             {item.done ? "Undo" : "Done"}
@@ -42,7 +42,7 @@ const ToDoItem = ({ item }) => {
             color="error"
             size="small"
             startIcon={<Delete />}
-            onClick={() => updateItem(item.id)}
+            onClick={() => removeItem(item.id)}
             style={{ padding: "0 2rem" }}
           >
             Delete

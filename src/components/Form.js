@@ -56,6 +56,13 @@ const ToDosContainer = () => {
         >
           add task
         </Button>
+        <div style={STYLES.todo}>{toDoItems}</div>
+
+        {toDoneItems.length > 0 && (
+          <h2 style={STYLES.doneText}>
+            {showLengthtoDoneItems()} allready done
+          </h2>
+        )}
         {toDoneItems.length > 0 && (
           <Button
             onClick={restoreItem}
@@ -63,17 +70,11 @@ const ToDosContainer = () => {
             color="primary"
             size="large"
             type="submit"
-            endIcon={<RestoreFromTrash />}
+            startIcon={<RestoreFromTrash />}
+            className="restore_btn"
           >
             restore {showLengthtoDoneItems()}
           </Button>
-        )}
-        <div style={STYLES.todo}>{toDoItems}</div>
-
-        {toDoneItems.length > 0 && (
-          <h2 style={STYLES.doneText}>
-            {showLengthtoDoneItems()} allready done
-          </h2>
         )}
         {toDoneItems.length > 0 && <div style={STYLES.done}>{toDoneItems}</div>}
       </form>

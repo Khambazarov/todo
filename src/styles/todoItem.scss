@@ -4,7 +4,7 @@
   align-items: center;
   margin: 1rem;
   border: 2px solid blue;
-  border-radius: 0.5rem;
+  border-radius: 6px;
 
   p {
     margin-left: 1rem;
@@ -12,9 +12,9 @@
 
   Button {
     width: 100%;
+    // margin: 1rem;
   }
 
   .btn_done {
-    margin: 0 0 0 1rem;
   }
 }
