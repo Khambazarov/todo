@@ -7,6 +7,7 @@ const Container = (props) => {
 
   const [items, setItems] = useState(tasks);
   const [value, setValue] = useState("");
+  // const [favourite, setFavourite] = useState(false);
 
   useEffect(() => {
     const tasks = JSON.parse(localStorage.getItem("todos"));
@@ -53,8 +54,15 @@ const Container = (props) => {
   };
 
   const addItem = (value) => {
-    const newItem = { id: uuidv4(), text: value, done: false };
+    const newItem = {
+      id: uuidv4(),
+      text: value,
+      done: false,
+      favourite: false,
+    };
     const updatedtasks = [...items, newItem];
+    // console.log({ items });
+    // console.log({ newItem });
 
     setItems(updatedtasks);
     localStorage.setItem("todos", JSON.stringify(updatedtasks));
@@ -62,6 +70,31 @@ const Container = (props) => {
 
   const toDos = items.filter((item) => !item.done);
   const toDones = items.filter((item) => item.done);
+
+  /*** ↓↓↓↓↓ TEST FIELD BELLOW ↓↓↓↓↓ TEST FIELD BELLOW ↓↓↓↓↓ ***/
+  // const fav = items.filter((item) => !item.favourite);
+  // const noFav = items.filter((item) => item.favourite);
+  // console.log("fav", fav);
+  // console.log("noFav", noFav);
+
+  // const toggleFav = () => {
+  //   setFavourite(!favourite);
+  //   updateFavItem();
+  // };
+
+  // const updateFavItem = () => {
+  //   const updatedFavItems = items.map((item) => {
+  //     console.log("tnnn", item);
+  //     if (item.favourite) {
+  //       item.favourite = !item.favourite;
+  //       return item;
+  //     } else return item;
+  //   });
+
+  //   setItems(updatedFavItems);
+  //   localStorage.setItem("todos", JSON.stringify(updatedFavItems));
+  // };
+  /*** ↑↑↑↑↑ TEST FIELD ABOVE ↑↑↑↑↑ TEST FIELD ABOVE ↑↑↑↑↑ ***/
 
   const showLengthToDoItems = () => {
     const tasks =
@@ -72,8 +105,8 @@ const Container = (props) => {
   const showLengthtoDoneItems = () => {
     const showDeletedTasks =
       toDones.length === 1
-        ? `${toDones.length} task`
-        : `${toDones.length} tasks`;
+        ? `restore ${toDones.length} task`
+        : `restore ${toDones.length} tasks`;
     return showDeletedTasks;
   };
 
@@ -89,19 +122,26 @@ const Container = (props) => {
       // margin: "1rem",
       // border: "1rem double #f00",
       // borderRadius: "2rem",
+      color: "#1565c0",
+      fontSize: "2rem",
+      fontWeight: "bold",
     },
     done: {
       border: "1px solid #0ff",
       backgroundColor: "#0ff",
+      color: "#1565c0",
     },
     todoText: {
-      textAlign: "center",
-      margin: "0",
-      padding: "0 0 1rem 0",
+      textAlign: "start",
+      margin: "0 0 0 1rem",
+      padding: "1rem 0 0 0",
       backgroundColor: "#0ff",
+      color: "#1565c0",
+      fontWeight: "bold",
+      fontSize: "2rem",
     },
     doneText: {
-      textAlign: "center",
+      // textAlign: "center",
       padding: "0 0 1rem 0",
       borderTop: "1rem solid #0ff",
       backgroundColor: "#0ff",
@@ -115,6 +155,7 @@ const Container = (props) => {
         updateItem,
         toDos,
         toDones,
+        // toggleFav,
         restoreItem,
         removeItem,
         showLengthToDoItems,

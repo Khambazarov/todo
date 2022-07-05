@@ -9,6 +9,8 @@ const ToDosContainer = () => {
     // addItem,
     toDos,
     toDones,
+    // favourite,
+    // noFavourite,
     restoreItem,
     showLengthToDoItems,
     showLengthtoDoneItems,
@@ -26,14 +28,19 @@ const ToDosContainer = () => {
     return <ToDoItem item={elem} key={elem.id}></ToDoItem>;
   });
 
+  // const favouriteItems = favourite.map((elem) => {
+  //   return <ToDoItem item={elem} key={elem.id}></ToDoItem>;
+  // });
+
+  // const noFavouriteItems = noFavourite.map((elem) => {
+  //   return <ToDoItem item={elem} key={elem.id}></ToDoItem>;
+  // });
+
   return (
     <div className="Form">
       <form
       //  onSubmit={handleSubmit}
       >
-        {toDos.length > 0 && (
-          <h2 style={STYLES.todoText}>{showLengthToDoItems()} to do</h2>
-        )}
         <TextField
           onChange={(e) => setValue(e.target.value)}
           type="text"
@@ -54,15 +61,15 @@ const ToDosContainer = () => {
           type="submit"
           startIcon={<AddTask />}
         >
-          add task
+          add
+          {/* add task */}
+          {/* {toDoItems.length > 0 && showLengthToDoItems()} */}
         </Button>
+        {toDos.length > 0 && (
+          <h2 style={STYLES.todoText}>{showLengthToDoItems()}</h2>
+        )}
         <div style={STYLES.todo}>{toDoItems}</div>
 
-        {toDoneItems.length > 0 && (
-          <h2 style={STYLES.doneText}>
-            {showLengthtoDoneItems()} allready done
-          </h2>
-        )}
         {toDoneItems.length > 0 && (
           <Button
             onClick={restoreItem}
@@ -71,11 +78,17 @@ const ToDosContainer = () => {
             size="large"
             type="submit"
             startIcon={<RestoreFromTrash />}
-            className="restore_btn"
+            endIcon={<RestoreFromTrash />}
+            style={{margin:"0.5rem 0 0 0"}}
           >
-            restore {showLengthtoDoneItems()}
+            {showLengthtoDoneItems()}
           </Button>
         )}
+        {/* {toDoneItems.length > 0 && (
+              <h2 style={STYLES.doneText}>
+                {showLengthtoDoneItems()} allready done
+              </h2>
+            )} */}
         {toDoneItems.length > 0 && <div style={STYLES.done}>{toDoneItems}</div>}
       </form>
     </div>
