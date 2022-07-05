@@ -2,16 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   border: 2px solid blue;
   border-radius: 6px;
 
-  p {
+  .ToDoItem-title {
     margin-left: 1rem;
-  }
-
-  Button {
-    width: 100%;
-    // margin: 1rem;
   }
 }

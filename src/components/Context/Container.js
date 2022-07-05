@@ -31,7 +31,6 @@ const Container = (props) => {
   };
 
   const restoreItem = () => {
-    // We need to toggle the status of the item with `done`.
     const restoreItems = items.map((item) => {
       if (item.done) {
         item.done = !item.done;
@@ -61,8 +60,6 @@ const Container = (props) => {
       favourite: false,
     };
     const updatedtasks = [...items, newItem];
-    // console.log({ items });
-    // console.log({ newItem });
 
     setItems(updatedtasks);
     localStorage.setItem("todos", JSON.stringify(updatedtasks));
@@ -72,6 +69,7 @@ const Container = (props) => {
   const toDones = items.filter((item) => item.done);
 
   /*** ↓↓↓↓↓ TEST FIELD BELLOW ↓↓↓↓↓ TEST FIELD BELLOW ↓↓↓↓↓ ***/
+
   // const fav = items.filter((item) => !item.favourite);
   // const noFav = items.filter((item) => item.favourite);
   // console.log("fav", fav);
@@ -94,6 +92,7 @@ const Container = (props) => {
   //   setItems(updatedFavItems);
   //   localStorage.setItem("todos", JSON.stringify(updatedFavItems));
   // };
+
   /*** ↑↑↑↑↑ TEST FIELD ABOVE ↑↑↑↑↑ TEST FIELD ABOVE ↑↑↑↑↑ ***/
 
   const showLengthToDoItems = () => {
@@ -119,17 +118,15 @@ const Container = (props) => {
 
   const STYLES = {
     todo: {
-      // margin: "1rem",
-      // border: "1rem double #f00",
-      // borderRadius: "2rem",
       color: "#1565c0",
-      fontSize: "2rem",
+      fontSize: "1.5rem",
       fontWeight: "bold",
     },
     done: {
       border: "1px solid #0ff",
       backgroundColor: "#0ff",
       color: "#1565c0",
+      textDecoration: "line-through solid red 20%",
     },
     todoText: {
       textAlign: "start",
@@ -138,10 +135,9 @@ const Container = (props) => {
       backgroundColor: "#0ff",
       color: "#1565c0",
       fontWeight: "bold",
-      fontSize: "2rem",
+      fontSize: "1.5rem",
     },
     doneText: {
-      // textAlign: "center",
       padding: "0 0 1rem 0",
       borderTop: "1rem solid #0ff",
       backgroundColor: "#0ff",
@@ -155,7 +151,6 @@ const Container = (props) => {
         updateItem,
         toDos,
         toDones,
-        // toggleFav,
         restoreItem,
         removeItem,
         showLengthToDoItems,
