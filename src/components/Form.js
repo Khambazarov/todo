@@ -50,7 +50,7 @@ const ToDosContainer = () => {
           size="large"
           type="submit"
           startIcon={<AddTask />}
-          style={{marginTop: "1rem"}}
+          style={{ marginTop: "1rem" }}
         >
           add
         </Button>
@@ -70,9 +70,13 @@ const ToDosContainer = () => {
             endIcon={<RestoreFromTrash />}
             style={{ margin: "0.5rem 0 0 0" }}
           >
-            {showLengthtoDoneItems()}
+            restore all done tasks
           </Button>
         )}
+        {toDones.length > 0 && (
+          <h2 style={STYLES.doneText}>{showLengthtoDoneItems()}</h2>
+        )}
+        {/* {showLengthtoDoneItems()} */}
         {toDoneItems.length > 0 && <div style={STYLES.done}>{toDoneItems}</div>}
       </form>
     </div>

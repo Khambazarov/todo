@@ -104,8 +104,8 @@ const Container = (props) => {
   const showLengthtoDoneItems = () => {
     const showDeletedTasks =
       toDones.length === 1
-        ? `restore ${toDones.length} task`
-        : `restore ${toDones.length} tasks`;
+        ? `${toDones.length} task`
+        : `${toDones.length} tasks`;
     return showDeletedTasks;
   };
 
@@ -138,9 +138,14 @@ const Container = (props) => {
       fontSize: "1.5rem",
     },
     doneText: {
-      padding: "0 0 1rem 0",
+      textAlign: "start",
+      margin: "0 0 0 1rem",
+      // padding: "0 0 1rem 0",
       borderTop: "1rem solid #0ff",
       backgroundColor: "#0ff",
+      color: "#1565c0",
+      fontWeight: "bold",
+      fontSize: "1.5rem",
     },
   };
 
