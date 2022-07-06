@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState, useEffect, useId } from "react";
+import { v4 as uuid } from "uuid";
 import MyContext from "./MyContext";
 
 const Container = (props) => {
@@ -7,6 +7,8 @@ const Container = (props) => {
 
   const [items, setItems] = useState(tasks);
   const [value, setValue] = useState("");
+  const ID = useId();
+  const UUID = uuid();
   // const [favourite, setFavourite] = useState(false);
 
   useEffect(() => {
@@ -54,7 +56,8 @@ const Container = (props) => {
 
   const addItem = (value) => {
     const newItem = {
-      id: uuidv4(),
+      // id: uuidv4(),
+      id: `${ID}${UUID}`,
       text: value,
       done: false,
       favourite: false,
@@ -114,6 +117,7 @@ const Container = (props) => {
     // value.trim() => prevent "spaced" Tasks
     if (value.trim()) addItem(value);
     setValue("");
+    // HADI's FN
   };
 
   const STYLES = {
