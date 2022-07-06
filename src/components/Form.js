@@ -50,6 +50,7 @@ const ToDosContainer = () => {
           size="large"
           type="submit"
           startIcon={<AddTask />}
+          style={{marginTop: "1rem"}}
         >
           add
         </Button>
