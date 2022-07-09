@@ -1,47 +1,40 @@
-import React, { useState, useContext } from "react";
-import MyContext from "./Context/MyContext";
+import React, { useContext } from "react";
+import { MyContext } from "./Context/MyContext";
 import { ButtonGroup, IconButton } from "@mui/material";
 import {
-  Delete,
   DoneAll,
+  ModeEdit,
   RestoreFromTrash,
-  StarBorder,
-  Star,
+  Delete,
 } from "@mui/icons-material";
 
-const ToDoItem = ({ item }) => {
-  const [favourite, setFavourite] = useState(false);
+export const ToDoItem = ({ item }) => {
   const { updateItem, removeItem } = useContext(MyContext);
-  console.log("favourite", item.favourite);
 
   return (
     <div className="ToDoItem">
       <p className="ToDoItem-title">{item.text}</p>
       <ButtonGroup>
-        <IconButton color="secondary" onClick={() => setFavourite(!favourite)}>
-          {favourite ? (
-            <Star fontSize="large" />
-          ) : (
-            <StarBorder fontSize="large" />
-          )}
-        </IconButton>
+        {!item.done && (
+          <IconButton color="secondary">
+            <ModeEdit fontSize="small" />
+          </IconButton>
+        )}
         {item.done ? (
           <IconButton color="secondary" onClick={() => updateItem(item.id)}>
-            <RestoreFromTrash fontSize="large" />
+            <RestoreFromTrash fontSize="small" />
           </IconButton>
         ) : (
           <IconButton color="success" onClick={() => updateItem(item.id)}>
-            <DoneAll fontSize="large" />
+            <DoneAll fontSize="small" />
           </IconButton>
         )}
         {item.done && (
           <IconButton color="error" onClick={() => removeItem(item.id)}>
-            <Delete fontSize="large" />
+            <Delete fontSize="small" />
           </IconButton>
         )}
       </ButtonGroup>
     </div>
   );
 };
-
-export default ToDoItem;

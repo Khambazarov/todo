@@ -1,7 +1,19 @@
 .Form {
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  text-align: center;
+  // text-align: center;
   border: 1rem solid #0ff;
   background-color: #0ff;
+
+  .paper_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // border: 1rem solid #f00;
+
+    .inputBase_container {
+      width: 100%;
+    // border: 1rem solid #0f0;
+    }
+  }
 }
