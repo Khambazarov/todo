@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { MyContext } from "./Context/MyContext";
 import { ButtonGroup, IconButton } from "@mui/material";
 import {
@@ -9,14 +9,19 @@ import {
 } from "@mui/icons-material";
 
 export const ToDoItem = ({ item }) => {
-  const { updateItem, removeItem } = useContext(MyContext);
+  const { updateItem, handleEditItem, removeItem } = useContext(MyContext);
+  const [edit, setEdit] = useState(false);
 
   return (
     <div className="ToDoItem">
-      <p className="ToDoItem-title">{item.text}</p>
+      {!edit ? (
+        <p className="ToDoItem-title">{item.text}</p>
+      ) : (
+        <input onChange={() => handleEditItem(item)} value={item.text} />
+      )}
       <ButtonGroup>
         {!item.done && (
-          <IconButton color="secondary">
+          <IconButton color="secondary" onClick={() => setEdit(!edit)}>
             <ModeEdit fontSize="small" />
           </IconButton>
         )}

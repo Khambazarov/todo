@@ -11,7 +11,7 @@ export const Container = (props) => {
   const UUID = uuid();
 
   // Uncaught TypeError: items.filter is not a function
-  // at Container (Container.js:15:1)
+  // at Container (Container.js:25:1)
   // at renderWithHooks (react-dom.development.js:16305:1)
   // at updateFunctionComponent (react-dom.development.js:19588:1)
   // at beginWork (react-dom.development.js:21601:1)
@@ -47,6 +47,15 @@ export const Container = (props) => {
     localStorage.setItem("todos", JSON.stringify(updatedtasks));
   };
 
+  const handleEditItem = (obj) => {
+    const filteredArray = items.filter((item) => item.id === obj.id);
+    filteredArray.text = obj.text;
+    // const newItem = [...items, filteredArray];
+
+    // setItems(filteredArray);
+    localStorage.setItem("todos", JSON.stringify(filteredArray));
+  };
+
   const updateItem = (id) => {
     const updatedItems = items.map((item) => {
       if (item.id === id) {
@@ -73,7 +82,6 @@ export const Container = (props) => {
 
   const removeItem = (id) => {
     const remove = items.filter((item) => item.id !== id);
-    console.log(remove);
     if (remove) {
       localStorage.removeItem("todos");
     }
@@ -145,6 +153,7 @@ export const Container = (props) => {
     <MyContext.Provider
       value={{
         addItem,
+        handleEditItem,
         updateItem,
         toDos,
         toDones,
